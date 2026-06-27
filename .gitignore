@@ -1,0 +1,10 @@
+# Local tooling
+.claude/
+scratchpad/
+
+# Personal source document (not published)
+CV_ElGaou_Nouemane.pdf
+
+# OS
+Thumbs.db
+.DS_Store

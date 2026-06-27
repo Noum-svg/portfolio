@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nouemane El Gaou — AI Engineering Student at ENSIAS, Rabat. Deep Learning, LLMs, RAG pipelines and mathematical optimization." />
+  <meta name="author" content="Nouemane El Gaou" />
+  <title>Nouemane El Gaou — AI Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Arial' font-weight='bold' fill='%231fc8ff'>N</text></svg>" />
+</head>
+<body>
+
+  <!-- ░░ PRELOADER ░░ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__name">NOUEMANE<br><span>EL GAOU</span></div>
+      <div class="preloader__count"><span id="counter">0</span><i>%</i></div>
+    </div>
+    <div class="preloader__bar"><span id="loadBar"></span></div>
+  </div>
+
+  <!-- ░░ CUSTOM CURSOR ░░ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ░░ PROGRESS BAR ░░ -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ░░ HEADER ░░ -->
+  <header class="header" id="header">
+    <a href="#hero" class="header__logo" data-hover>
+      <span>N</span>EG<i>.</i>
+    </a>
+    <nav class="header__nav" id="nav">
+      <a href="#about" data-hover>About</a>
+      <a href="#stats" data-hover>Impact</a>
+      <a href="#experience" data-hover>Experience</a>
+      <a href="#projects" data-hover>Projects</a>
+      <a href="#skills" data-hover>Skills</a>
+      <a href="#contact" class="header__cta" data-hover>Contact</a>
+    </nav>
+    <button class="header__burger" id="burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+
+    <!-- ░░ HERO ░░ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg">
+        <div class="hero__grid"></div>
+        <div class="hero__blob hero__blob--1"></div>
+        <div class="hero__blob hero__blob--2"></div>
+        <div class="hero__noise"></div>
+      </div>
+
+      <div class="hero__meta">
+        <span>AI ENGINEER</span>
+        <span>EST. 2024 — ENSIAS</span>
+        <span>RABAT · MOROCCO</span>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__pre" data-reveal>Hi, I'm — building intelligent systems</p>
+        <h1 class="hero__title">
+          <span class="line" data-stagger><em>NOUEMANE</em></span>
+          <span class="line" data-stagger>EL&nbsp;GAOU</span>
+        </h1>
+        <div class="hero__sub">
+          <p data-reveal>
+            Second-year <strong>AI Engineering</strong> student at ENSIAS, fusing
+            applied mathematics with deep learning, large language models and
+            optimization.
+          </p>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll" data-hover>
+        <span>Scroll</span>
+        <i></i>
+      </a>
+
+      <div class="hero__rank" data-reveal>
+        <span class="hero__rank-num">#3</span>
+        <span class="hero__rank-txt">National<br>Math Morocco '24</span>
+      </div>
+    </section>
+
+    <!-- ░░ MARQUEE ░░ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Deep Learning</span><i>✦</i>
+        <span>Large Language Models</span><i>✦</i>
+        <span>RAG Pipelines</span><i>✦</i>
+        <span>Reinforcement Learning</span><i>✦</i>
+        <span>Combinatorial Optimization</span><i>✦</i>
+        <span>Tropical Geometry</span><i>✦</i>
+        <span>Deep Learning</span><i>✦</i>
+        <span>Large Language Models</span><i>✦</i>
+        <span>RAG Pipelines</span><i>✦</i>
+        <span>Reinforcement Learning</span><i>✦</i>
+        <span>Combinatorial Optimization</span><i>✦</i>
+        <span>Tropical Geometry</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ░░ ABOUT ░░ -->
+    <section class="about section" id="about">
+      <div class="section__head">
+        <span class="section__index">01</span>
+        <h2 class="section__title" data-reveal>About</h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__media" data-reveal>
+          <div class="about__photo">
+            <img src="assets/profile.png" alt="Nouemane El Gaou" />
+            <div class="about__photo-frame"></div>
+          </div>
+          <div class="about__badge">
+            <span>Open to</span>
+            <strong>Internships<br>& Research</strong>
+          </div>
+        </div>
+
+        <div class="about__text">
+          <p class="about__lead" data-reveal>
+            I'm an AI engineering student who treats mathematics as a craft —
+            from olympiad problem-solving to building production-grade LLM systems.
+          </p>
+          <p data-reveal>
+            Currently in my second year at <strong>ENSIAS, Rabat</strong>, after a
+            Bachelor's in Mathematics in Tangier. I move comfortably between deep
+            theory — like investigating <strong>tropical geometry</strong> for new
+            neural architectures at UM6P — and shipping applied work, such as
+            <strong>RAG agents</strong>, <strong>LLM deployment</strong> and
+            <strong>3D bin-packing optimization</strong> in industry.
+          </p>
+          <p data-reveal>
+            Ranked 3rd nationally in Math Morocco 2024 and a former Math Olympiad
+            finalist, I love hard, well-defined problems and the elegant systems
+            that solve them.
+          </p>
+
+          <div class="about__facts" data-reveal>
+            <div class="about__fact">
+              <span>Based in</span>
+              <strong>Rabat, Morocco</strong>
+            </div>
+            <div class="about__fact">
+              <span>Focus</span>
+              <strong>LLMs · DL · Optimization</strong>
+            </div>
+            <div class="about__fact">
+              <span>Languages</span>
+              <strong>AR · FR · EN</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ STATS ░░ -->
+    <section class="stats section" id="stats">
+      <div class="section__head">
+        <span class="section__index">02</span>
+        <h2 class="section__title" data-reveal>By the numbers</h2>
+      </div>
+
+      <div class="stats__grid">
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="3" data-prefix="#">#3</span>
+          <span class="stat__label">National rank — Math Morocco 2024</span>
+        </div>
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="50" data-prefix="Top ">Top 50</span>
+          <span class="stat__label">National Math Olympiad — IMO camp</span>
+        </div>
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="3" data-prefix="#">#3</span>
+          <span class="stat__label">RamadanIA AI Hackathon 2026</span>
+        </div>
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="2">2</span>
+          <span class="stat__label">NVIDIA LLM certifications</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ EXPERIENCE ░░ -->
+    <section class="exp section" id="experience">
+      <div class="section__head">
+        <span class="section__index">03</span>
+        <h2 class="section__title" data-reveal>Experience &amp; Education</h2>
+      </div>
+
+      <div class="timeline">
+
+        <article class="tl-item" data-reveal>
+          <div class="tl-item__year">2025</div>
+          <div class="tl-item__body">
+            <span class="tl-item__tag">Research Internship</span>
+            <h3>Research Intern — AI Engineering</h3>
+            <p class="tl-item__org">Mohammed VI Polytechnic University (UM6P), Benguerir · Jun–Aug 2025</p>
+            <p>Investigated <strong>tropical geometry</strong> as a theoretical
+              framework for designing novel neural network architectures.</p>
+          </div>
+        </article>
+
+        <article class="tl-item" data-reveal>
+          <div class="tl-item__year">2024</div>
+          <div class="tl-item__body">
+            <span class="tl-item__tag">Engineering Degree</span>
+            <h3>AI Engineering — ENSIAS</h3>
+            <p class="tl-item__org">National School of Computer Science &amp; Systems Analysis, Rabat · 2024–2027</p>
+            <p>Specializing in artificial intelligence, deep learning and
+              large-scale intelligent systems.</p>
+          </div>
+        </article>
+
+        <article class="tl-item" data-reveal>
+          <div class="tl-item__year">2024</div>
+          <div class="tl-item__body">
+            <span class="tl-item__tag">End-of-Studies Internship (PFE)</span>
+            <h3>Optimization Intern</h3>
+            <p class="tl-item__org">Smart Automation Technologies, Tangier · Apr–Jun 2024</p>
+            <p>Solved the <strong>3D Bin Packing Problem</strong> using deterministic
+              and stochastic optimization — heuristics &amp; metaheuristics.</p>
+          </div>
+        </article>
+
+        <article class="tl-item" data-reveal>
+          <div class="tl-item__year">2021</div>
+          <div class="tl-item__body">
+            <span class="tl-item__tag">Bachelor's Degree</span>
+            <h3>Mathematics</h3>
+            <p class="tl-item__org">Faculty of Science &amp; Technology, Tangier · 2021–2024</p>
+            <p>Strong foundation in applied mathematics — the backbone of everything
+              I build today.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ░░ PROJECTS ░░ -->
+    <section class="projects section" id="projects">
+      <div class="section__head">
+        <span class="section__index">04</span>
+        <h2 class="section__title" data-reveal>Selected work</h2>
+      </div>
+
+      <div class="projects__grid">
+
+        <article class="card card--lg" data-reveal data-tilt>
+          <div class="card__top">
+            <span class="card__num">01</span>
+            <span class="card__badge">🏆 3rd Place</span>
+          </div>
+          <h3 class="card__title">MAFQOODAT</h3>
+          <p class="card__desc">
+            An AI-powered lost &amp; found platform built at the RamadanIA Hackathon
+            to digitalize and automate lost-item reporting and recovery, with
+            AI-assisted matching workflows for individuals and institutions.
+            Selected for the national final as a scalable centralized infrastructure.
+          </p>
+          <ul class="card__tags">
+            <li>LLMs</li><li>Matching</li><li>Full-stack</li><li>Public sector</li>
+          </ul>
+        </article>
+
+        <article class="card" data-reveal data-tilt>
+          <div class="card__top">
+            <span class="card__num">02</span>
+            <span class="card__badge">Research</span>
+          </div>
+          <h3 class="card__title">Tropical Neural Nets</h3>
+          <p class="card__desc">
+            Polygenic virus analysis through an MLOps pipeline grounded in
+            <strong>tropical geometry</strong> — exploring new architectural
+            primitives for deep models.
+          </p>
+          <ul class="card__tags">
+            <li>MLOps</li><li>Tropical Geometry</li><li>Deep Learning</li>
+          </ul>
+        </article>
+
+        <article class="card" data-reveal data-tilt>
+          <div class="card__top">
+            <span class="card__num">03</span>
+            <span class="card__badge">Optimization</span>
+          </div>
+          <h3 class="card__title">3D Bin Packing</h3>
+          <p class="card__desc">
+            Industrial container-loading optimizer solving the 3D Bin Packing
+            Problem with heuristics and metaheuristics for real warehouse logistics.
+          </p>
+          <ul class="card__tags">
+            <li>Metaheuristics</li><li>OR</li><li>Python</li>
+          </ul>
+        </article>
+
+        <article class="card" data-reveal data-tilt>
+          <div class="card__top">
+            <span class="card__num">04</span>
+            <span class="card__badge">Creative</span>
+          </div>
+          <h3 class="card__title">3D Game · Blender</h3>
+          <p class="card__desc">
+            A self-built 3D video game — modelling, assets and game logic — exploring
+            the creative side of computation.
+          </p>
+          <ul class="card__tags">
+            <li>Blender</li><li>3D</li><li>Game Dev</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ░░ SKILLS ░░ -->
+    <section class="skills section" id="skills">
+      <div class="section__head">
+        <span class="section__index">05</span>
+        <h2 class="section__title" data-reveal>Toolbox</h2>
+      </div>
+
+      <div class="skills__grid">
+        <div class="skillset" data-reveal>
+          <h3>Machine Learning</h3>
+          <ul>
+            <li>Deep Learning</li>
+            <li>Neural Network Architectures</li>
+            <li>Reinforcement Learning</li>
+          </ul>
+        </div>
+        <div class="skillset" data-reveal>
+          <h3>AI / NLP</h3>
+          <ul>
+            <li>Large Language Models</li>
+            <li>RAG Pipelines</li>
+            <li>LLM Deployment</li>
+          </ul>
+        </div>
+        <div class="skillset" data-reveal>
+          <h3>Mathematics</h3>
+          <ul>
+            <li>Combinatorial Optimization</li>
+            <li>Tropical Geometry</li>
+            <li>Metaheuristics</li>
+          </ul>
+        </div>
+        <div class="skillset" data-reveal>
+          <h3>Certifications</h3>
+          <ul>
+            <li>NVIDIA · RAD with LLMs</li>
+            <li>NVIDIA · Building RAG Agents</li>
+            <li>Issued Nov 2025</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="skills__langs" data-reveal>
+        <div class="lang"><strong>Arabic</strong><span>Native</span></div>
+        <div class="lang"><strong>French</strong><span>Professional</span></div>
+        <div class="lang"><strong>English</strong><span>Professional</span></div>
+      </div>
+    </section>
+
+    <!-- ░░ CONTACT ░░ -->
+    <section class="contact section" id="contact">
+      <div class="contact__inner">
+        <span class="contact__pre" data-reveal>Let's build something</span>
+        <a href="mailto:ouidadgaou@gmail.com" class="contact__mail" data-hover>
+          <span class="line" data-stagger>LET'S</span>
+          <span class="line" data-stagger>TALK<i>.</i></span>
+        </a>
+
+        <div class="contact__details">
+          <a href="mailto:ouidadgaou@gmail.com" data-reveal data-hover>
+            <span>Email</span>ouidadgaou@gmail.com
+          </a>
+          <a href="tel:+212626858814" data-reveal data-hover>
+            <span>Phone</span>+212 626 858 814
+          </a>
+          <div data-reveal>
+            <span>Location</span>Rabat, Morocco
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="footer__row">
+      <span>© <span id="year"></span> Nouemane El Gaou</span>
+      <div class="footer__links">
+        <a href="mailto:ouidadgaou@gmail.com" data-hover>Email</a>
+        <a href="#hero" data-hover>Back to top ↑</a>
+      </div>
+    </div>
+    <div class="footer__big" aria-hidden="true">EL&nbsp;GAOU</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
