@@ -591,3 +591,144 @@ ul { list-style: none; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   [data-reveal], [data-stagger] > *, .hero__title .line > *, .contact__mail .line > * { opacity: 1 !important; transform: none !important; }
 }
+
+/* ============================================================
+   HERO ROLE LINE  (Lando-style "2025 McLaren F1 Driver")
+   ============================================================ */
+.hero__role {
+  margin-top: 1.5rem; font-size: clamp(.9rem, 1.6vw, 1.2rem);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--text);
+  font-weight: 500; display: flex; align-items: center; gap: 1rem;
+}
+.hero__role::before {
+  content: ''; width: clamp(30px, 5vw, 56px); height: 1px;
+  background: var(--accent); flex: 0 0 auto;
+}
+
+/* ============================================================
+   STORY / MESSAGE
+   ============================================================ */
+.message__grid {
+  display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.18fr);
+  gap: clamp(2.5rem, 6vw, 5rem); align-items: center;
+}
+.message__media { position: relative; max-width: 420px; }
+.message__media:hover .about__photo img { filter: grayscale(0); transform: scale(1.04); }
+.message__quote {
+  font-size: clamp(1.8rem, 4.4vw, 3.4rem); line-height: 1.08; font-weight: 700;
+  letter-spacing: -.02em; margin-bottom: 2rem;
+}
+.message__quote em { font-style: normal; color: var(--accent); }
+.message__text {
+  color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.15rem);
+  max-width: 58ch; margin-bottom: 2.2rem;
+}
+.message__text strong { color: var(--text); font-weight: 600; }
+.message__sign {
+  display: flex; flex-direction: column; gap: .25rem;
+  padding-top: 1.6rem; border-top: 1px solid var(--line);
+}
+.message__signature { font-family: 'Caveat', cursive; font-size: 2.6rem; color: var(--text); line-height: 1; }
+.message__role { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* ============================================================
+   JOURNEY (captioned moments — Lando carousel)
+   ============================================================ */
+.journey { position: relative; }
+.journey__track {
+  display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 1.5rem; cursor: grab;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.journey__track::-webkit-scrollbar { display: none; }
+.journey__track.dragging { cursor: grabbing; scroll-snap-type: none; }
+.journey__track.dragging .moment { pointer-events: none; }
+.moment {
+  position: relative; flex: 0 0 clamp(280px, 38vw, 430px); aspect-ratio: 4 / 5;
+  scroll-snap-align: start; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.8rem; user-select: none;
+  background: linear-gradient(160deg, var(--surface), var(--bg));
+  transition: transform .5s var(--ease), border-color .4s;
+}
+.moment::before {
+  content: ''; position: absolute; inset: 0; opacity: .55;
+  background: radial-gradient(circle at 72% 16%, var(--glow), transparent 55%);
+}
+.moment--b::before, .moment--d::before {
+  background: radial-gradient(circle at 72% 16%, rgba(120,110,255,.30), transparent 55%);
+}
+.moment:hover { border-color: rgba(31,200,255,.45); transform: translateY(-6px); }
+.moment__year {
+  position: absolute; top: 1.4rem; left: 1.6rem; z-index: 2;
+  font-family: var(--ff-display); font-size: clamp(2.8rem, 6vw, 4.4rem);
+  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.35); line-height: 1;
+}
+.moment__cap { position: relative; z-index: 2; }
+.moment__loc { display: inline-block; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .7rem; }
+.moment__cap h3 { font-size: clamp(1.15rem, 2.3vw, 1.55rem); font-weight: 600; line-height: 1.15; margin-bottom: .5rem; }
+.moment__cap p { color: var(--muted); font-size: .88rem; }
+.journey__hint { margin-top: 1.2rem; font-size: .76rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted-2); }
+
+/* ============================================================
+   HALL OF FAME
+   ============================================================ */
+.hof__grid { display: flex; flex-direction: column; }
+.hof__card {
+  display: grid; grid-template-columns: 120px 1fr auto; align-items: center; gap: 2rem;
+  padding: 2rem .5rem; border-top: 1px solid var(--line); position: relative;
+  transition: background .4s, padding-left .4s;
+}
+.hof__card:last-child { border-bottom: 1px solid var(--line); }
+.hof__card::before { content: ''; position: absolute; left: 0; top: -1px; height: 1px; width: 0; background: var(--accent); transition: width .6s var(--ease); }
+.hof__card:hover::before { width: 100%; }
+.hof__card:hover { background: var(--surface); padding-left: 1.5rem; }
+.hof__year { font-family: var(--ff-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--muted-2); line-height: 1; transition: color .3s; }
+.hof__card:hover .hof__year { color: var(--accent); }
+.hof__info h3 { font-size: clamp(1.2rem, 2.6vw, 1.8rem); font-weight: 600; letter-spacing: -.01em; }
+.hof__info p { color: var(--muted); font-size: .92rem; margin-top: .35rem; }
+.hof__rank {
+  font-family: var(--ff-display); font-size: clamp(2rem, 5vw, 3.2rem);
+  color: transparent; -webkit-text-stroke: 1px var(--line); transition: color .3s, -webkit-text-stroke .3s;
+}
+.hof__rank sup { font-size: .5em; }
+.hof__card:hover .hof__rank { color: var(--accent); -webkit-text-stroke: 0; }
+
+/* ============================================================
+   PARTNERS / INSTITUTIONS
+   ============================================================ */
+.partners__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+}
+.partner {
+  background: var(--bg); padding: clamp(1.8rem, 4vw, 2.8rem) 1.5rem; min-height: 120px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-family: var(--ff-display); font-size: clamp(1.05rem, 2vw, 1.6rem); letter-spacing: .02em;
+  text-transform: uppercase; color: var(--muted); transition: color .35s, background .35s;
+}
+.partner:hover { color: var(--text); background: var(--surface); }
+
+/* ============================================================
+   CONTACT SOCIALS
+   ============================================================ */
+.contact__socials { display: flex; justify-content: center; gap: 2.4rem; margin-top: 2.5rem; flex-wrap: wrap; }
+.contact__socials a { font-size: .95rem; letter-spacing: .04em; color: var(--muted); transition: color .3s; }
+.contact__socials a:hover { color: var(--accent); }
+
+/* ============================================================
+   RESPONSIVE — new components
+   ============================================================ */
+@media (max-width: 980px) {
+  .message__grid { grid-template-columns: 1fr; }
+  .message__media { max-width: 360px; }
+  .partners__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .hof__card { grid-template-columns: 64px 1fr; gap: 1rem; padding-block: 1.6rem; }
+  .hof__rank { display: none; }
+  .moment { flex-basis: 78vw; }
+}
+@media (max-width: 480px) {
+  .partners__grid { grid-template-columns: 1fr; }
+}

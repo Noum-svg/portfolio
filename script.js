@@ -224,6 +224,39 @@
   }
 
   /* ---------------------------------------------------------
+     JOURNEY — drag to scroll + wheel-to-horizontal
+  --------------------------------------------------------- */
+  function journeyDrag() {
+    const track = $('#journeyTrack');
+    if (!track) return;
+
+    let down = false, startX = 0, startLeft = 0, moved = 0;
+
+    track.addEventListener('pointerdown', (e) => {
+      down = true; moved = 0;
+      startX = e.clientX; startLeft = track.scrollLeft;
+      track.classList.add('dragging');
+    });
+    window.addEventListener('pointerup', () => {
+      down = false; track.classList.remove('dragging');
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      track.scrollLeft = startLeft - dx;
+    });
+
+    // vertical wheel -> horizontal scroll when hovering the track
+    track.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        track.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
+
+  /* ---------------------------------------------------------
      MISC
   --------------------------------------------------------- */
   function misc() {
@@ -244,6 +277,7 @@
     heroParallax();
     cursor();
     cardTilt();
+    journeyDrag();
     preloader();
   }
 
