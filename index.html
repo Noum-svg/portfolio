@@ -9,444 +9,465 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Arial' font-weight='bold' fill='%231fc8ff'>N</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0d10'/><text x='50' y='50' dy='.35em' text-anchor='middle' font-size='54' font-family='monospace' font-weight='bold' fill='%231fc8ff'>N</text></svg>" />
 </head>
 <body>
 
-  <!-- ░░ PRELOADER ░░ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__inner">
-      <div class="preloader__name">NOUEMANE<br><span>EL GAOU</span></div>
-      <div class="preloader__count"><span id="counter">0</span><i>%</i></div>
-    </div>
-    <div class="preloader__bar"><span id="loadBar"></span></div>
-  </div>
-
-  <!-- ░░ CUSTOM CURSOR ░░ -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
-
-  <!-- ░░ PROGRESS BAR ░░ -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- ░░ HEADER ░░ -->
-  <header class="header" id="header">
-    <a href="#hero" class="header__logo" data-hover>
-      <span>N</span>EG<i>.</i>
+  <!-- ░░ MOBILE TOP BAR ░░ -->
+  <header class="topbar">
+    <a href="#overview" class="topbar__brand">
+      <span class="topbar__logo">NEG</span>
+      <span class="topbar__dot"></span>
     </a>
-    <nav class="header__nav" id="nav">
-      <a href="#story" data-hover>Story</a>
-      <a href="#journey" data-hover>Journey</a>
-      <a href="#honors" data-hover>Honors</a>
-      <a href="#work" data-hover>Work</a>
-      <a href="#contact" class="header__cta" data-hover>Contact</a>
-    </nav>
-    <button class="header__burger" id="burger" aria-label="Menu">
-      <span></span><span></span>
+    <button class="topbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
   </header>
 
-  <main>
+  <div class="overlay" id="overlay"></div>
 
-    <!-- ░░ HERO ░░ -->
-    <section class="hero" id="hero">
-      <div class="hero__bg">
-        <div class="hero__grid"></div>
-        <div class="hero__blob hero__blob--1"></div>
-        <div class="hero__blob hero__blob--2"></div>
-        <div class="hero__noise"></div>
-      </div>
-
-      <div class="hero__meta">
-        <span>AI ENGINEER</span>
-        <span>ENSIAS · SINCE 2024</span>
-        <span>RABAT · MOROCCO</span>
-      </div>
-
-      <div class="hero__content">
-        <p class="hero__pre" data-reveal>Building intelligent systems</p>
-        <h1 class="hero__title">
-          <span class="line" data-stagger><em>NOUEMANE</em></span>
-          <span class="line" data-stagger>EL&nbsp;GAOU</span>
-        </h1>
-        <p class="hero__role" data-reveal>2026 — AI Engineering Student · ENSIAS, Rabat</p>
-        <div class="hero__sub">
-          <p data-reveal>
-            Fusing <strong>applied mathematics</strong> with deep learning, large
-            language models and optimization.
-          </p>
+  <!-- ░░ SIDEBAR ░░ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__top">
+      <div class="profile">
+        <div class="profile__avatar">
+          <img src="assets/profile.png" alt="Nouemane El Gaou" />
+          <span class="profile__ring"></span>
+        </div>
+        <div class="profile__id">
+          <span class="profile__name">Nouemane El&nbsp;Gaou</span>
+          <span class="profile__role mono">AI Engineering Student</span>
         </div>
       </div>
-
-      <a href="#story" class="hero__scroll" data-hover>
-        <span>Scroll</span>
-        <i></i>
-      </a>
-
-      <div class="hero__rank" data-reveal>
-        <span class="hero__rank-num">#3</span>
-        <span class="hero__rank-txt">National<br>Math Morocco '24</span>
-      </div>
-    </section>
-
-    <!-- ░░ MARQUEE TAGLINE ░░ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>ENSIAS since 2024</span><i>✦</i>
-        <span>Deep Learning</span><i>✦</i>
-        <span>Large Language Models</span><i>✦</i>
-        <span>RAG Pipelines</span><i>✦</i>
-        <span>Optimization</span><i>✦</i>
-        <span>Tropical Geometry</span><i>✦</i>
-        <span>ENSIAS since 2024</span><i>✦</i>
-        <span>Deep Learning</span><i>✦</i>
-        <span>Large Language Models</span><i>✦</i>
-        <span>RAG Pipelines</span><i>✦</i>
-        <span>Optimization</span><i>✦</i>
-        <span>Tropical Geometry</span><i>✦</i>
+      <div class="status">
+        <span class="status__dot"></span>
+        <span class="mono">Available for internships</span>
       </div>
     </div>
 
-    <!-- ░░ STORY / MESSAGE ░░ -->
-    <section class="message section" id="story">
-      <div class="section__head">
-        <span class="section__index">01</span>
-        <h2 class="section__title" data-reveal>A few words</h2>
+    <nav class="nav" id="nav">
+      <a href="#overview" class="nav__link is-active" data-section="overview">
+        <svg viewBox="0 0 24 24" class="nav__icon"><path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"/></svg>
+        <span>Overview</span><i class="mono">01</i>
+      </a>
+      <a href="#experience" class="nav__link" data-section="experience">
+        <svg viewBox="0 0 24 24" class="nav__icon"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z"/></svg>
+        <span>Experience</span><i class="mono">02</i>
+      </a>
+      <a href="#projects" class="nav__link" data-section="projects">
+        <svg viewBox="0 0 24 24" class="nav__icon"><path d="M8 8 3 12l5 4m8-8 5 4-5 4m-2-13-4 18"/></svg>
+        <span>Projects</span><i class="mono">03</i>
+      </a>
+      <a href="#stack" class="nav__link" data-section="stack">
+        <svg viewBox="0 0 24 24" class="nav__icon"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 4 9 5 9-5"/></svg>
+        <span>Stack</span><i class="mono">04</i>
+      </a>
+      <a href="#achievements" class="nav__link" data-section="achievements">
+        <svg viewBox="0 0 24 24" class="nav__icon"><path d="M8 4h8v3a4 4 0 0 1-8 0V4Zm-3 1h3m8 0h3M9 15h6l1 5H8l1-5Z"/></svg>
+        <span>Achievements</span><i class="mono">05</i>
+      </a>
+      <a href="#contact" class="nav__link" data-section="contact">
+        <svg viewBox="0 0 24 24" class="nav__icon"><path d="M3 6h18v12H3V6Zm0 1 9 6 9-6"/></svg>
+        <span>Contact</span><i class="mono">06</i>
+      </a>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <a class="btn-cv" href="assets/Nouemane_El_Gaou_CV.pdf" download data-hover>
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+        Download CV
+      </a>
+      <div class="sidebar__socials">
+        <a href="https://github.com/Noum-svg" target="_blank" rel="noopener">GitHub</a>
+        <span class="sep">/</span>
+        <a href="mailto:ouidadgaou@gmail.com">Email</a>
+      </div>
+      <span class="mono sidebar__loc">Rabat, MA · GMT+1</span>
+    </div>
+  </aside>
+
+  <!-- ░░ MAIN ░░ -->
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <section class="panel" id="overview">
+      <div class="panel__head" data-reveal>
+        <span class="panel__idx mono">// 01</span>
+        <h2 class="panel__title">Overview</h2>
+        <span class="panel__rule"></span>
       </div>
 
-      <div class="message__grid">
-        <div class="message__media" data-reveal>
-          <div class="about__photo">
-            <img src="assets/profile.png" alt="Nouemane El Gaou" />
-            <div class="about__photo-frame"></div>
-          </div>
-          <div class="about__badge">
-            <span>Open to</span>
-            <strong>Internships<br>& Research</strong>
-          </div>
+      <div class="hero">
+        <p class="hero__eyebrow mono" data-reveal>AI ENGINEER · ENSIAS '24 · RABAT</p>
+        <h1 class="hero__title" data-reveal>
+          Building <span class="hi">intelligent systems</span><br>
+          from first principles.
+        </h1>
+        <p class="hero__lead" data-reveal>
+          Second-year AI engineering student fusing applied mathematics with deep
+          learning, large language models and optimization. Ranked 3rd nationally
+          in Math Morocco 2024.
+        </p>
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--primary" href="assets/Nouemane_El_Gaou_CV.pdf" download data-hover>
+            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+            Download CV
+          </a>
+          <a class="btn btn--ghost" href="#contact" data-hover>Get in touch →</a>
         </div>
+      </div>
 
-        <div class="message__body">
-          <blockquote class="message__quote" data-reveal>
-            It’s not where you start —<br>it’s <em>how far</em> you push from there.
-          </blockquote>
-          <p class="message__text" data-reveal>
-            I’m Nouemane, a second-year AI engineering student at <strong>ENSIAS,
-            Rabat</strong>. I treat mathematics as a craft — moving from olympiad
-            problem-solving to building real LLM, RAG and optimization systems.
-            From <strong>tropical geometry</strong> research at UM6P to a hackathon
-            podium, I chase hard, well-defined problems and the elegant machines
-            that solve them.
-          </p>
-          <div class="message__sign" data-reveal>
-            <span class="message__signature">Nouemane El Gaou</span>
-            <span class="message__role">AI Engineering Student</span>
-          </div>
+      <div class="metrics">
+        <div class="metric" data-reveal>
+          <span class="metric__num" data-count="3" data-prefix="#">#3</span>
+          <span class="metric__lbl mono">National — Math Morocco '24</span>
+        </div>
+        <div class="metric" data-reveal>
+          <span class="metric__num" data-count="7">7</span>
+          <span class="metric__lbl mono">Engineering projects</span>
+        </div>
+        <div class="metric" data-reveal>
+          <span class="metric__num" data-count="2">2</span>
+          <span class="metric__lbl mono">NVIDIA LLM certs</span>
+        </div>
+        <div class="metric" data-reveal>
+          <span class="metric__num" data-count="50" data-prefix="Top ">Top 50</span>
+          <span class="metric__lbl mono">Nat. Math Olympiad</span>
+        </div>
+      </div>
+
+      <div class="terminal" data-reveal>
+        <div class="terminal__bar">
+          <span class="terminal__dot"></span><span class="terminal__dot"></span><span class="terminal__dot"></span>
+          <span class="terminal__title mono">nouemane@ensias: ~</span>
+        </div>
+        <div class="terminal__body mono">
+          <p><span class="pr">➜</span> <span class="cmd">whoami</span></p>
+          <p class="out">nouemane_el_gaou — AI Engineering Student @ ENSIAS, Rabat</p>
+          <p><span class="pr">➜</span> <span class="cmd">cat focus.txt</span></p>
+          <p class="out">Deep Learning · LLMs · RAG · Combinatorial Optimization · Tropical Geometry</p>
+          <p><span class="pr">➜</span> <span class="cmd">echo $LANGUAGES</span></p>
+          <p class="out">Arabic (native) · French (pro) · English (pro)</p>
+          <p><span class="pr">➜</span> <span class="typed" id="typed"></span><span class="caret"></span></p>
         </div>
       </div>
     </section>
 
-    <!-- ░░ JOURNEY (captioned moments) ░░ -->
-    <section class="journey section" id="journey">
-      <div class="section__head">
-        <span class="section__index">02</span>
-        <h2 class="section__title" data-reveal>The Journey</h2>
+    <!-- EXPERIENCE -->
+    <section class="panel" id="experience">
+      <div class="panel__head" data-reveal>
+        <span class="panel__idx mono">// 02</span>
+        <h2 class="panel__title">Experience &amp; Education</h2>
+        <span class="panel__rule"></span>
       </div>
 
-      <div class="journey__track" id="journeyTrack" data-reveal>
-
-        <article class="moment moment--a">
-          <span class="moment__year">2025</span>
-          <div class="moment__cap">
-            <span class="moment__loc">UM6P · Benguerir</span>
+      <div class="rows">
+        <article class="row" data-reveal>
+          <div class="row__meta">
+            <span class="row__date mono">Jun–Aug 2025</span>
+            <span class="row__tag">Research</span>
+          </div>
+          <div class="row__body">
             <h3>Research Intern — AI Engineering</h3>
-            <p>Tropical geometry for novel neural architectures.</p>
+            <p class="row__org mono">UM6P · Benguerir</p>
+            <p>Investigated <b>tropical geometry</b> as a theoretical framework for designing novel neural network architectures.</p>
           </div>
         </article>
 
-        <article class="moment moment--b">
-          <span class="moment__year">2026</span>
-          <div class="moment__cap">
-            <span class="moment__loc">RamadanIA · Rabat</span>
-            <h3>Hackathon — 3rd Place</h3>
-            <p>MAFQOODAT, an AI lost &amp; found platform.</p>
+        <article class="row" data-reveal>
+          <div class="row__meta">
+            <span class="row__date mono">2024 — 2027</span>
+            <span class="row__tag">Degree</span>
+          </div>
+          <div class="row__body">
+            <h3>Engineering Degree — Artificial Intelligence</h3>
+            <p class="row__org mono">ENSIAS · Rabat</p>
+            <p>National School of Computer Science &amp; Systems Analysis. Deep learning &amp; large-scale intelligent systems.</p>
           </div>
         </article>
 
-        <article class="moment moment--c">
-          <span class="moment__year">2024</span>
-          <div class="moment__cap">
-            <span class="moment__loc">Math&amp;Maroc · Benguerir</span>
-            <h3>Math Morocco — 3rd National</h3>
-            <p>Top of the country in applied mathematics.</p>
+        <article class="row" data-reveal>
+          <div class="row__meta">
+            <span class="row__date mono">Apr–Jun 2024</span>
+            <span class="row__tag">Internship (PFE)</span>
+          </div>
+          <div class="row__body">
+            <h3>Optimization Intern</h3>
+            <p class="row__org mono">Smart Automation Technologies · Tangier</p>
+            <p>Solved the <b>3D Bin Packing Problem</b> with deterministic &amp; stochastic optimization — heuristics and metaheuristics.</p>
           </div>
         </article>
 
-        <article class="moment moment--d">
-          <span class="moment__year">2024</span>
-          <div class="moment__cap">
-            <span class="moment__loc">Smart Automation · Tangier</span>
-            <h3>End-of-Studies Intern (PFE)</h3>
-            <p>3D Bin Packing with heuristics &amp; metaheuristics.</p>
+        <article class="row" data-reveal>
+          <div class="row__meta">
+            <span class="row__date mono">2021 — 2024</span>
+            <span class="row__tag">Degree</span>
           </div>
-        </article>
-
-        <article class="moment moment--e">
-          <span class="moment__year">2024</span>
-          <div class="moment__cap">
-            <span class="moment__loc">ENSIAS · Rabat</span>
-            <h3>AI Engineering Degree</h3>
-            <p>Deep learning &amp; large-scale intelligent systems.</p>
+          <div class="row__body">
+            <h3>Bachelor's Degree — Mathematics</h3>
+            <p class="row__org mono">Faculty of Science &amp; Technology · Tangier</p>
+            <p>Strong foundation in applied mathematics — the backbone of everything I build today.</p>
           </div>
-        </article>
-
-      </div>
-      <p class="journey__hint" data-reveal>Drag / scroll →</p>
-    </section>
-
-    <!-- ░░ HALL OF FAME ░░ -->
-    <section class="hof section" id="honors">
-      <div class="section__head">
-        <span class="section__index">03</span>
-        <h2 class="section__title" data-reveal>Hall of Fame</h2>
-      </div>
-
-      <div class="hof__grid">
-        <article class="hof__card" data-reveal data-tilt>
-          <span class="hof__year">2026</span>
-          <div class="hof__info">
-            <h3>RamadanIA Hackathon</h3>
-            <p>3rd Place — National final · Ministry of Digital Transition</p>
-          </div>
-          <span class="hof__rank">3<sup>rd</sup></span>
-        </article>
-
-        <article class="hof__card" data-reveal data-tilt>
-          <span class="hof__year">2025</span>
-          <div class="hof__info">
-            <h3>NVIDIA — LLM Certifications</h3>
-            <p>RAD with LLMs · Building RAG Agents with LLMs</p>
-          </div>
-          <span class="hof__rank">2×</span>
-        </article>
-
-        <article class="hof__card" data-reveal data-tilt>
-          <span class="hof__year">2024</span>
-          <div class="hof__info">
-            <h3>Math Morocco Competition</h3>
-            <p>Ranked 3rd nationally · Math&amp;Maroc, UM6P Benguerir</p>
-          </div>
-          <span class="hof__rank">#3</span>
-        </article>
-
-        <article class="hof__card" data-reveal data-tilt>
-          <span class="hof__year">2020</span>
-          <div class="hof__info">
-            <h3>National Math Olympiad</h3>
-            <p>Finalist — Top 50 nationwide · IMO training camps</p>
-          </div>
-          <span class="hof__rank">T50</span>
         </article>
       </div>
     </section>
 
-    <!-- ░░ SELECTED WORK ░░ -->
-    <section class="projects section" id="work">
-      <div class="section__head">
-        <span class="section__index">04</span>
-        <h2 class="section__title" data-reveal>Selected work</h2>
+    <!-- PROJECTS -->
+    <section class="panel" id="projects">
+      <div class="panel__head" data-reveal>
+        <span class="panel__idx mono">// 03</span>
+        <h2 class="panel__title">Projects</h2>
+        <span class="panel__rule"></span>
+        <span class="panel__count mono">7</span>
       </div>
 
-      <div class="projects__grid">
+      <div class="projects">
 
-        <article class="card card--lg" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">01</span>
-            <span class="card__badge">🏆 3rd Place · Hackathon</span>
+        <article class="project project--feat" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">MAFQOODAT</h3>
+            <span class="project__badge">🏆 3rd · Hackathon</span>
           </div>
-          <h3 class="card__title">MAFQOODAT</h3>
-          <p class="card__desc">
-            An AI-powered lost &amp; found platform built at the RamadanIA Hackathon
-            to digitalize and automate lost-item reporting and recovery. Features a
-            <strong>conversational AI agent</strong> and AI-assisted matching
-            workflows for individuals and institutions. Selected for the national
-            final as a scalable centralized infrastructure.
+          <span class="project__type mono">// LLM Agent · Full-stack</span>
+          <p class="project__desc">
+            AI-powered lost &amp; found platform built at the RamadanIA Hackathon to
+            digitalize and automate lost-item reporting and recovery. Conversational
+            AI agent + AI-assisted matching for individuals and institutions.
+            Selected for the national final.
           </p>
-          <ul class="card__tags">
-            <li>LLM Agent</li><li>Matching</li><li>Full-stack</li><li>Public sector</li>
+          <ul class="project__stack">
+            <li class="mono">llm-agent</li><li class="mono">matching</li><li class="mono">full-stack</li><li class="mono">public-sector</li>
           </ul>
         </article>
 
-        <article class="card" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">02</span>
-            <span class="card__badge">MLOps · Research</span>
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">Tropical Virus PhyloTree</h3>
+            <a class="project__git" href="https://github.com/Noum-svg/tropical-virus-phylo-mlops" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
           </div>
-          <h3 class="card__title">Tropical Virus PhyloTree</h3>
-          <p class="card__desc">
-            Turns viral RNA/DNA sequences into an optimized <strong>phylogenetic
-            tree</strong> by learning a <em>tropical</em> correction of the distance
-            matrix, then running Neighbor-Joining. Full MLOps stack — React
-            dashboard, FastAPI, Streamlit, Docker &amp; CI.
+          <span class="project__type mono">// MLOps · Research</span>
+          <p class="project__desc">
+            Turns viral RNA/DNA sequences into an optimized phylogenetic tree by
+            learning a <b>tropical</b> correction of the distance matrix, then
+            Neighbor-Joining. Full stack: React dashboard, FastAPI, Streamlit,
+            Docker &amp; CI.
           </p>
-          <ul class="card__tags">
-            <li>Tropical Geometry</li><li>MLOps</li><li>FastAPI</li><li>React</li><li>Docker</li>
-          </ul>
-          <a class="card__link" href="https://github.com/Noum-svg/tropical-virus-phylo-mlops" target="_blank" rel="noopener" data-hover>View on GitHub ↗</a>
-        </article>
-
-        <article class="card" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">03</span>
-            <span class="card__badge">Deep Learning</span>
-          </div>
-          <h3 class="card__title">3D Point-Cloud Nets</h3>
-          <p class="card__desc">
-            Graph neural networks (<strong>ECC</strong> &amp; <strong>MoNet</strong>)
-            classifying 3D point clouds (CAP3D / ShapeNet), with
-            <strong>Federated Learning</strong> (FedAvg IID / non-IID, VFL) and
-            knowledge distillation compressing the model 4×.
-          </p>
-          <ul class="card__tags">
-            <li>GNN</li><li>Federated Learning</li><li>Distillation</li><li>PyTorch</li>
+          <ul class="project__stack">
+            <li class="mono">tropical-geometry</li><li class="mono">fastapi</li><li class="mono">react</li><li class="mono">docker</li>
           </ul>
         </article>
 
-        <article class="card" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">04</span>
-            <span class="card__badge">Optimization · PFE</span>
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">3D Point-Cloud Nets</h3>
+            <span class="project__badge">DL</span>
           </div>
-          <h3 class="card__title">3D Bin Packing</h3>
-          <p class="card__desc">
+          <span class="project__type mono">// Graph Neural Nets</span>
+          <p class="project__desc">
+            GNNs (<b>ECC</b> &amp; <b>MoNet</b>) classifying 3D point clouds
+            (CAP3D / ShapeNet), with Federated Learning (FedAvg IID / non-IID, VFL)
+            and knowledge distillation compressing the model 4×.
+          </p>
+          <ul class="project__stack">
+            <li class="mono">gnn</li><li class="mono">federated-learning</li><li class="mono">distillation</li><li class="mono">pytorch</li>
+          </ul>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">3D Bin Packing</h3>
+            <span class="project__badge">PFE</span>
+          </div>
+          <span class="project__type mono">// Optimization</span>
+          <p class="project__desc">
             Container / truck-loading optimizer for the 3D Bin Packing Problem —
-            simplex, heuristics, metaheuristics and a reinforcement-learning
-            approach for real warehouse logistics. Built at Smart Automation, Tangier.
+            simplex, heuristics, metaheuristics and a reinforcement-learning approach
+            for real warehouse logistics.
           </p>
-          <ul class="card__tags">
-            <li>Metaheuristics</li><li>Reinforcement Learning</li><li>Simplex</li><li>Python</li>
+          <ul class="project__stack">
+            <li class="mono">metaheuristics</li><li class="mono">reinforcement-learning</li><li class="mono">simplex</li><li class="mono">python</li>
           </ul>
         </article>
 
-        <article class="card" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">05</span>
-            <span class="card__badge">Algorithms</span>
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">HMM Sequence Modeling</h3>
+            <span class="project__badge">Algo</span>
           </div>
-          <h3 class="card__title">HMM Sequence Modeling</h3>
-          <p class="card__desc">
-            Hidden Markov Models for biological sequences &amp; text —
-            Forward-Backward scoring, <strong>Viterbi</strong> decoding and
-            <strong>Baum-Welch</strong> learning, documented in professional
-            LaTeX reports.
+          <span class="project__type mono">// Probabilistic Models</span>
+          <p class="project__desc">
+            Hidden Markov Models for biological sequences &amp; text — Forward-Backward
+            scoring, <b>Viterbi</b> decoding and <b>Baum-Welch</b> learning, with
+            professional LaTeX reports.
           </p>
-          <ul class="card__tags">
-            <li>HMM</li><li>Viterbi</li><li>Baum-Welch</li><li>NumPy</li>
+          <ul class="project__stack">
+            <li class="mono">hmm</li><li class="mono">viterbi</li><li class="mono">baum-welch</li><li class="mono">numpy</li>
           </ul>
         </article>
 
-        <article class="card" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">06</span>
-            <span class="card__badge">Systems · C++</span>
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">Markov Decision Process</h3>
+            <span class="project__badge">C++</span>
           </div>
-          <h3 class="card__title">Markov Decision Process</h3>
-          <p class="card__desc">
-            A value-iteration MDP solver written from scratch in <strong>C++</strong>
-            on a linked-cell grid world — dynamic programming for sequential
+          <span class="project__type mono">// Systems · DP</span>
+          <p class="project__desc">
+            A value-iteration MDP solver written from scratch in <b>C++</b> on a
+            linked-cell grid world — dynamic programming for sequential
             decision-making.
           </p>
-          <ul class="card__tags">
-            <li>C++</li><li>Dynamic Programming</li><li>RL</li>
+          <ul class="project__stack">
+            <li class="mono">c++</li><li class="mono">dynamic-programming</li><li class="mono">rl</li>
           </ul>
         </article>
 
-        <article class="card" data-reveal data-tilt>
-          <div class="card__top">
-            <span class="card__num">07</span>
-            <span class="card__badge">Creative</span>
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <h3 class="project__name">3D Game · Blender</h3>
+            <span class="project__badge">Creative</span>
           </div>
-          <h3 class="card__title">3D Game · Blender</h3>
-          <p class="card__desc">
+          <span class="project__type mono">// 3D · Game Dev</span>
+          <p class="project__desc">
             A self-built 3D video game — modelling, rigging, assets and game logic —
             exploring the creative side of computation.
           </p>
-          <ul class="card__tags">
-            <li>Blender</li><li>3D</li><li>Game Dev</li>
+          <ul class="project__stack">
+            <li class="mono">blender</li><li class="mono">3d</li><li class="mono">game-dev</li>
           </ul>
         </article>
 
       </div>
     </section>
 
-    <!-- ░░ PARTNERS / INSTITUTIONS ░░ -->
-    <section class="partners section" id="partners">
-      <div class="section__head">
-        <span class="section__index">05</span>
-        <h2 class="section__title" data-reveal>Institutions &amp; Partners</h2>
+    <!-- STACK -->
+    <section class="panel" id="stack">
+      <div class="panel__head" data-reveal>
+        <span class="panel__idx mono">// 04</span>
+        <h2 class="panel__title">Stack</h2>
+        <span class="panel__rule"></span>
       </div>
 
-      <div class="partners__grid" data-reveal>
-        <div class="partner">ENSIAS</div>
-        <div class="partner">UM6P</div>
-        <div class="partner">NVIDIA</div>
-        <div class="partner">Math&amp;Maroc</div>
-        <div class="partner">Smart Automation</div>
-        <div class="partner">Ministry of Digital Transition</div>
-      </div>
-
-      <div class="skills__langs" data-reveal>
-        <div class="lang"><strong>Arabic</strong><span>Native</span></div>
-        <div class="lang"><strong>French</strong><span>Professional</span></div>
-        <div class="lang"><strong>English</strong><span>Professional</span></div>
-      </div>
-    </section>
-
-    <!-- ░░ CONTACT ░░ -->
-    <section class="contact section" id="contact">
-      <div class="contact__inner">
-        <span class="contact__pre" data-reveal>Let's build something</span>
-        <a href="mailto:ouidadgaou@gmail.com" class="contact__mail" data-hover>
-          <span class="line" data-stagger>LET'S</span>
-          <span class="line" data-stagger>TALK<i>.</i></span>
-        </a>
-
-        <div class="contact__socials" data-reveal>
-          <a href="https://github.com/Noum-svg" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
-          <a href="mailto:ouidadgaou@gmail.com" data-hover>Email ↗</a>
+      <div class="stack">
+        <div class="stack__group" data-reveal>
+          <h3 class="stack__cat mono">machine_learning</h3>
+          <ul class="stack__tags">
+            <li class="mono">Deep Learning</li><li class="mono">Neural Architectures</li><li class="mono">Reinforcement Learning</li><li class="mono">GNNs</li>
+          </ul>
         </div>
+        <div class="stack__group" data-reveal>
+          <h3 class="stack__cat mono">ai_nlp</h3>
+          <ul class="stack__tags">
+            <li class="mono">LLMs</li><li class="mono">RAG Pipelines</li><li class="mono">LLM Deployment</li><li class="mono">Agents</li>
+          </ul>
+        </div>
+        <div class="stack__group" data-reveal>
+          <h3 class="stack__cat mono">mathematics</h3>
+          <ul class="stack__tags">
+            <li class="mono">Combinatorial Optimization</li><li class="mono">Tropical Geometry</li><li class="mono">Metaheuristics</li><li class="mono">Probability</li>
+          </ul>
+        </div>
+        <div class="stack__group" data-reveal>
+          <h3 class="stack__cat mono">tools_languages</h3>
+          <ul class="stack__tags">
+            <li class="mono">Python</li><li class="mono">C++</li><li class="mono">PyTorch</li><li class="mono">FastAPI</li><li class="mono">React</li><li class="mono">Docker</li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="contact__details">
-          <a href="mailto:ouidadgaou@gmail.com" data-reveal data-hover>
-            <span>Email</span>ouidadgaou@gmail.com
-          </a>
-          <a href="tel:+212626858814" data-reveal data-hover>
-            <span>Phone</span>+212 626 858 814
-          </a>
-          <div data-reveal>
-            <span>Location</span>Rabat, Morocco
+      <div class="certs" data-reveal>
+        <div class="cert">
+          <span class="cert__k mono">CERT</span>
+          <div>
+            <p class="cert__name">Rapid Application Development with LLMs</p>
+            <p class="cert__meta mono">NVIDIA · Nov 2025</p>
+          </div>
+        </div>
+        <div class="cert">
+          <span class="cert__k mono">CERT</span>
+          <div>
+            <p class="cert__name">Building RAG Agents with LLMs</p>
+            <p class="cert__meta mono">NVIDIA · Nov 2025</p>
           </div>
         </div>
       </div>
     </section>
 
-  </main>
-
-  <!-- ░░ FOOTER ░░ -->
-  <footer class="footer">
-    <div class="footer__row">
-      <span>© <span id="year"></span> Nouemane El Gaou. All rights reserved.</span>
-      <div class="footer__links">
-        <a href="https://github.com/Noum-svg" target="_blank" rel="noopener" data-hover>GitHub</a>
-        <a href="mailto:ouidadgaou@gmail.com" data-hover>Email</a>
-        <a href="#hero" data-hover>Back to top ↑</a>
+    <!-- ACHIEVEMENTS -->
+    <section class="panel" id="achievements">
+      <div class="panel__head" data-reveal>
+        <span class="panel__idx mono">// 05</span>
+        <h2 class="panel__title">Achievements</h2>
+        <span class="panel__rule"></span>
       </div>
-    </div>
-    <div class="footer__big" aria-hidden="true">EL&nbsp;GAOU</div>
-  </footer>
+
+      <div class="awards">
+        <article class="award" data-reveal>
+          <span class="award__year mono">2026</span>
+          <div class="award__body">
+            <h3>RamadanIA AI Hackathon — 3rd Place</h3>
+            <p>National final · Ministry of Digital Transition &amp; Administrative Reform</p>
+          </div>
+          <span class="award__rank mono">3rd</span>
+        </article>
+        <article class="award" data-reveal>
+          <span class="award__year mono">2024</span>
+          <div class="award__body">
+            <h3>Math Morocco Competition — 3rd Nationally</h3>
+            <p>Math&amp;Maroc · UM6P Benguerir</p>
+          </div>
+          <span class="award__rank mono">#3</span>
+        </article>
+        <article class="award" data-reveal>
+          <span class="award__year mono">2020</span>
+          <div class="award__body">
+            <h3>National Mathematics Olympiad — Finalist</h3>
+            <p>Top 50 nationwide · Selected for IMO training camps</p>
+          </div>
+          <span class="award__rank mono">T50</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="panel" id="contact">
+      <div class="panel__head" data-reveal>
+        <span class="panel__idx mono">// 06</span>
+        <h2 class="panel__title">Contact</h2>
+        <span class="panel__rule"></span>
+      </div>
+
+      <div class="contact" data-reveal>
+        <div class="contact__left">
+          <p class="contact__pitch">
+            Open to <b>AI / ML internships and research</b> collaborations.
+            Let's build something intelligent.
+          </p>
+          <a class="btn btn--primary" href="mailto:ouidadgaou@gmail.com" data-hover>
+            <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3V6Zm0 1 9 6 9-6"/></svg>
+            ouidadgaou@gmail.com
+          </a>
+        </div>
+        <ul class="contact__list">
+          <li><span class="mono">email</span><a href="mailto:ouidadgaou@gmail.com">ouidadgaou@gmail.com</a></li>
+          <li><span class="mono">phone</span><a href="tel:+212626858814">+212 626 858 814</a></li>
+          <li><span class="mono">github</span><a href="https://github.com/Noum-svg" target="_blank" rel="noopener">github.com/Noum-svg</a></li>
+          <li><span class="mono">location</span><span>Rabat, Morocco</span></li>
+          <li><span class="mono">cv</span><a href="assets/Nouemane_El_Gaou_CV.pdf" download>Download PDF ↓</a></li>
+        </ul>
+      </div>
+
+      <footer class="foot">
+        <span class="mono">© <span id="year"></span> Nouemane El Gaou</span>
+        <span class="mono">Built with HTML · CSS · JS</span>
+      </footer>
+    </section>
+
+  </main>
 
   <script src="script.js"></script>
 </body>

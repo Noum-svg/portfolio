@@ -1,289 +1,102 @@
 /* ============================================================
-   Nouemane El Gaou — Portfolio interactions
+   Nouemane El Gaou — Dashboard interactions
    ============================================================ */
 (function () {
   'use strict';
-
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------------------------------------------------
-     PRELOADER
-  --------------------------------------------------------- */
-  function preloader() {
-    const pre     = $('#preloader');
-    const counter = $('#counter');
-    const bar     = $('#loadBar');
-    if (!pre) return revealHero();
-
-    if (reduceMotion) {
-      pre.classList.add('done');
-      setTimeout(revealHero, 100);
-      return;
-    }
-
-    let val = 0;
-    const tick = () => {
-      val += Math.round(Math.random() * 8) + 3;
-      if (val > 100) val = 100;
-      counter.textContent = val;
-      bar.style.width = val + '%';
-      if (val < 100) {
-        setTimeout(tick, Math.random() * 130 + 40);
-      } else {
-        setTimeout(() => {
-          pre.classList.add('done');
-          revealHero();
-        }, 350);
-      }
-    };
-    tick();
+  /* ---------- reveal on scroll ---------- */
+  function reveal() {
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    $$('[data-reveal]').forEach((el) => io.observe(el));
   }
 
-  /* ---------------------------------------------------------
-     HERO INTRO (staggered lines)
-  --------------------------------------------------------- */
-  function wrapLines() {
-    $$('.hero__title .line, .contact__mail .line').forEach((line) => {
-      if (line.querySelector('span,em,i')) return; // already structured
-    });
-    // wrap raw text nodes so they can be translated
-    $$('.hero__title .line, .contact__mail .line').forEach((line) => {
-      const html = line.innerHTML.trim();
-      line.innerHTML = `<span class="line__inner">${html}</span>`;
-    });
-  }
-
-  function revealHero() {
-    document.body.classList.add('loaded');
-    $$('.hero__title .line__inner').forEach((el, i) => {
-      setTimeout(() => el.classList.add('reveal-up'), 120 * i + 80);
-    });
-    $$('.hero [data-reveal]').forEach((el, i) => {
-      setTimeout(() => el.classList.add('in'), 350 + 90 * i);
-    });
-  }
-
-  /* ---------------------------------------------------------
-     SCROLL REVEAL (IntersectionObserver)
-  --------------------------------------------------------- */
-  function scrollReveal() {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          // stagger children inside contact mail
-          if (e.target.classList.contains('line')) {
-            const inner = e.target.querySelector('.line__inner');
-            if (inner) inner.classList.add('reveal-up');
-          }
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-
-    $$('[data-reveal]').forEach((el) => {
-      if (el.closest('.hero')) return; // hero handled by intro
-      io.observe(el);
-    });
-    $$('.contact__mail .line').forEach((el) => io.observe(el));
-  }
-
-  /* ---------------------------------------------------------
-     STAT COUNTERS
-  --------------------------------------------------------- */
+  /* ---------- stat counters ---------- */
   function counters() {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
         if (!e.isIntersecting) return;
-        const el     = e.target;
-        const target = parseInt(el.dataset.count, 10);
-        const prefix = el.dataset.prefix || '';
-        if (reduceMotion) { el.textContent = prefix + target; io.unobserve(el); return; }
-        let cur = 0;
-        const step = Math.max(1, Math.round(target / 38));
-        const run = () => {
-          cur += step;
-          if (cur >= target) { cur = target; }
-          el.textContent = prefix + cur;
-          if (cur < target) requestAnimationFrame(run);
-        };
-        run();
-        io.unobserve(el);
+        const el = e.target, target = parseInt(el.dataset.count, 10), prefix = el.dataset.prefix || '';
+        if (reduce) { el.textContent = prefix + target; io.unobserve(el); return; }
+        let cur = 0; const step = Math.max(1, Math.round(target / 32));
+        const run = () => { cur += step; if (cur >= target) cur = target; el.textContent = prefix + cur; if (cur < target) requestAnimationFrame(run); };
+        run(); io.unobserve(el);
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.6 });
     $$('[data-count]').forEach((el) => io.observe(el));
   }
 
-  /* ---------------------------------------------------------
-     HEADER on scroll + scroll progress
-  --------------------------------------------------------- */
-  function headerScroll() {
-    const header   = $('#header');
-    const progress = $('#scrollProgress');
-    const onScroll = () => {
-      const y = window.scrollY;
-      header.classList.toggle('scrolled', y > 40);
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+  /* ---------- scrollspy (active sidebar link) ---------- */
+  function scrollspy() {
+    const links = $$('.nav__link');
+    const map = {}; links.forEach((l) => map[l.dataset.section] = l);
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          links.forEach((l) => l.classList.remove('is-active'));
+          const active = map[e.target.id];
+          if (active) active.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    $$('.panel').forEach((p) => io.observe(p));
   }
 
-  /* ---------------------------------------------------------
-     MOBILE MENU
-  --------------------------------------------------------- */
-  function mobileMenu() {
-    const burger = $('#burger');
-    const nav    = $('#nav');
+  /* ---------- scroll progress ---------- */
+  function progress() {
+    const bar = $('#scrollProgress');
+    const on = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', on, { passive: true }); on();
+  }
+
+  /* ---------- mobile sidebar ---------- */
+  function menu() {
+    const burger = $('#burger'), sidebar = $('#sidebar'), overlay = $('#overlay');
     if (!burger) return;
-    const toggle = (force) => {
-      const open = force ?? !nav.classList.contains('open');
-      nav.classList.toggle('open', open);
+    const set = (open) => {
+      sidebar.classList.toggle('open', open);
+      overlay.classList.toggle('show', open);
       burger.classList.toggle('open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     };
-    burger.addEventListener('click', () => toggle());
-    $$('#nav a').forEach((a) => a.addEventListener('click', () => toggle(false)));
+    burger.addEventListener('click', () => set(!sidebar.classList.contains('open')));
+    overlay.addEventListener('click', () => set(false));
+    $$('.nav__link, .btn-cv').forEach((a) => a.addEventListener('click', () => set(false)));
   }
 
-  /* ---------------------------------------------------------
-     HERO PARALLAX
-  --------------------------------------------------------- */
-  function heroParallax() {
-    if (reduceMotion) return;
-    const b1 = $('.hero__blob--1');
-    const b2 = $('.hero__blob--2');
-    const title = $('.hero__title');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > window.innerHeight) return;
-      if (b1) b1.style.transform = `translateY(${y * 0.18}px)`;
-      if (b2) b2.style.transform = `translateY(${-y * 0.12}px)`;
-      if (title) title.style.transform = `translateY(${y * 0.07}px)`;
-    }, { passive: true });
-  }
-
-  /* ---------------------------------------------------------
-     CUSTOM CURSOR
-  --------------------------------------------------------- */
-  function cursor() {
-    if (window.matchMedia('(hover: none)').matches) return;
-    const ring = $('#cursor');
-    const dot  = $('#cursorDot');
-    if (!ring) return;
-
-    let mx = innerWidth / 2, my = innerHeight / 2;
-    let rx = mx, ry = my;
-
-    window.addEventListener('mousemove', (e) => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-    });
-
-    const loop = () => {
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
-      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-      requestAnimationFrame(loop);
-    };
-    loop();
-
-    const hoverEls = '[data-hover], a, button';
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(hoverEls)) ring.classList.add('hovering');
-    });
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(hoverEls)) ring.classList.remove('hovering');
-    });
-  }
-
-  /* ---------------------------------------------------------
-     CARD TILT + glow tracking
-  --------------------------------------------------------- */
-  function cardTilt() {
-    const cards = $$('[data-tilt]');
-    cards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        card.style.setProperty('--mx', px * 100 + '%');
-        card.style.setProperty('--my', py * 100 + '%');
-        if (reduceMotion) return;
-        const rotX = (py - 0.5) * -6;
-        const rotY = (px - 0.5) * 6;
-        card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-  }
-
-  /* ---------------------------------------------------------
-     JOURNEY — drag to scroll + wheel-to-horizontal
-  --------------------------------------------------------- */
-  function journeyDrag() {
-    const track = $('#journeyTrack');
-    if (!track) return;
-
-    let down = false, startX = 0, startLeft = 0, moved = 0;
-
-    track.addEventListener('pointerdown', (e) => {
-      down = true; moved = 0;
-      startX = e.clientX; startLeft = track.scrollLeft;
-      track.classList.add('dragging');
-    });
-    window.addEventListener('pointerup', () => {
-      down = false; track.classList.remove('dragging');
-    });
-    window.addEventListener('pointermove', (e) => {
-      if (!down) return;
-      const dx = e.clientX - startX;
-      moved = Math.max(moved, Math.abs(dx));
-      track.scrollLeft = startLeft - dx;
-    });
-
-    // vertical wheel -> horizontal scroll when hovering the track
-    track.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        track.scrollLeft += e.deltaY;
-        e.preventDefault();
+  /* ---------- terminal typing ---------- */
+  function typing() {
+    const el = $('#typed');
+    if (!el) return;
+    const cmds = ['ls projects/', 'git status', 'python train.py --model llm', './deploy.sh'];
+    if (reduce) { el.textContent = cmds[0]; return; }
+    let ci = 0, chi = 0, del = false;
+    const tick = () => {
+      const word = cmds[ci];
+      el.textContent = word.slice(0, chi);
+      if (!del) {
+        chi++;
+        if (chi > word.length) { del = true; return setTimeout(tick, 1600); }
+      } else {
+        chi--;
+        if (chi === 0) { del = false; ci = (ci + 1) % cmds.length; }
       }
-    }, { passive: false });
+      setTimeout(tick, del ? 45 : 95);
+    };
+    setTimeout(tick, 900);
   }
 
-  /* ---------------------------------------------------------
-     MISC
-  --------------------------------------------------------- */
-  function misc() {
-    const yr = $('#year');
-    if (yr) yr.textContent = new Date().getFullYear();
-  }
+  /* ---------- misc ---------- */
+  function misc() { const y = $('#year'); if (y) y.textContent = new Date().getFullYear(); }
 
-  /* ---------------------------------------------------------
-     INIT
-  --------------------------------------------------------- */
-  function init() {
-    wrapLines();
-    misc();
-    headerScroll();
-    mobileMenu();
-    scrollReveal();
-    counters();
-    heroParallax();
-    cursor();
-    cardTilt();
-    journeyDrag();
-    preloader();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  function init() { misc(); reveal(); counters(); scrollspy(); progress(); menu(); typing(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
