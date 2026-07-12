@@ -454,6 +454,16 @@ ul { list-style: none; }
   font-size: .76rem; color: var(--muted); padding: .35rem .8rem;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
 }
+.card__link {
+  display: inline-flex; align-items: center; margin-top: 1.5rem;
+  font-size: .85rem; font-weight: 500; letter-spacing: .03em; color: var(--accent);
+  position: relative; width: fit-content;
+}
+.card__link::after {
+  content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px;
+  background: var(--accent); transition: width .35s var(--ease);
+}
+.card__link:hover::after { width: 100%; }
 
 /* ============================================================
    SKILLS
