@@ -1,0 +1,143 @@
+{
+  "tropical": {
+    "name": "Tropical Virus PhyloTree",
+    "lang": "python",
+    "files": [
+      {
+        "name": "main.py",
+        "lang": "python",
+        "bytes": 1904
+      },
+      {
+        "name": "distances.py",
+        "lang": "python",
+        "bytes": 6128
+      },
+      {
+        "name": "phylogeny.py",
+        "lang": "python",
+        "bytes": 9659
+      },
+      {
+        "name": "tropical_gradient_descent.py",
+        "lang": "python",
+        "bytes": 10225
+      },
+      {
+        "name": "tropical_grassmannian.py",
+        "lang": "python",
+        "bytes": 5857
+      },
+      {
+        "name": "train.py",
+        "lang": "python",
+        "bytes": 9532
+      },
+      {
+        "name": "evaluate.py",
+        "lang": "python",
+        "bytes": 3253
+      },
+      {
+        "name": "data_loader.py",
+        "lang": "python",
+        "bytes": 6838
+      }
+    ]
+  },
+  "binpacking": {
+    "name": "3D Bin Packing",
+    "lang": "python",
+    "files": [
+      {
+        "name": "optimization.py",
+        "lang": "python",
+        "bytes": 1332
+      },
+      {
+        "name": "simplexe_algo.py",
+        "lang": "python",
+        "bytes": 2120
+      },
+      {
+        "name": "reinforcement_learning.py",
+        "lang": "python",
+        "bytes": 6049
+      },
+      {
+        "name": "OP.py",
+        "lang": "python",
+        "bytes": 5179
+      },
+      {
+        "name": "unite_de_charge.py",
+        "lang": "python",
+        "bytes": 6065
+      },
+      {
+        "name": "ER.py",
+        "lang": "python",
+        "bytes": 2116
+      },
+      {
+        "name": "uc.py",
+        "lang": "python",
+        "bytes": 1129
+      }
+    ]
+  },
+  "mdp": {
+    "name": "Markov Decision Process",
+    "lang": "cpp",
+    "files": [
+      {
+        "name": "main.cpp",
+        "lang": "cpp",
+        "bytes": 448
+      }
+    ]
+  },
+  "zoo": {
+    "name": "Zoo Explorer",
+    "lang": "typescript",
+    "files": [
+      {
+        "name": "page.tsx",
+        "lang": "typescript",
+        "bytes": 15410
+      },
+      {
+        "name": "animals.ts",
+        "lang": "typescript",
+        "bytes": 5162
+      },
+      {
+        "name": "layout.tsx",
+        "lang": "typescript",
+        "bytes": 716
+      }
+    ]
+  },
+  "pointcloud": {
+    "name": "3D Point-Cloud Nets",
+    "lang": "python",
+    "files": [
+      {
+        "name": "cap3d_pipeline.py",
+        "lang": "python",
+        "bytes": 60268
+      }
+    ]
+  },
+  "markov": {
+    "name": "HMM & Markov Chains",
+    "lang": "python",
+    "files": [
+      {
+        "name": "markov_analysis.py",
+        "lang": "python",
+        "bytes": 12509
+      }
+    ]
+  }
+}

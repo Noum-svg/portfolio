@@ -93,10 +93,77 @@
     setTimeout(tick, 900);
   }
 
+  /* ---------- code viewer ---------- */
+  function codeViewer() {
+    const modal = $('#codeModal');
+    if (!modal) return;
+    const filesEl = $('#cmFiles'), codeEl = $('#cmCode'), titleEl = $('#cmTitle'),
+          nameEl = $('#cmFilename'), copyBtn = $('#cmCopy');
+    let manifest = null, current = null;
+
+    const highlight = (text, lang) => {
+      codeEl.textContent = text;
+      codeEl.className = 'hljs language-' + (lang || 'plaintext');
+      if (window.hljs) { try { window.hljs.highlightElement(codeEl); } catch (e) {} }
+    };
+
+    const loadFile = (slug, file) => {
+      $$('.codemodal__file').forEach((b) => b.classList.toggle('active', b.dataset.file === file.name));
+      nameEl.textContent = 'code/' + slug + '/' + file.name;
+      codeEl.textContent = 'Loading…';
+      fetch('code/' + slug + '/' + encodeURIComponent(file.name))
+        .then((r) => r.text())
+        .then((t) => { current = t; highlight(t, file.lang); codeEl.parentElement.scrollTop = 0; })
+        .catch(() => { codeEl.textContent = '// could not load file'; });
+    };
+
+    const open = (slug) => {
+      const proj = manifest[slug];
+      if (!proj) return;
+      titleEl.textContent = proj.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + ' — source';
+      filesEl.innerHTML = '';
+      proj.files.forEach((f) => {
+        const b = document.createElement('button');
+        b.className = 'codemodal__file'; b.textContent = f.name; b.dataset.file = f.name;
+        b.addEventListener('click', () => loadFile(slug, f));
+        filesEl.appendChild(b);
+      });
+      modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      loadFile(slug, proj.files[0]);
+    };
+
+    const close = () => {
+      modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    const wire = () => {
+      $$('.project__code').forEach((btn) => {
+        const slug = btn.dataset.code;
+        btn.addEventListener('click', () => { if (manifest) open(slug); });
+      });
+    };
+
+    fetch('code/manifest.json').then((r) => r.json())
+      .then((m) => { manifest = m; wire(); })
+      .catch(() => {});
+
+    modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    copyBtn.addEventListener('click', () => {
+      if (current == null) return;
+      navigator.clipboard.writeText(current).then(() => {
+        copyBtn.textContent = 'Copied ✓';
+        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+      });
+    });
+  }
+
   /* ---------- misc ---------- */
   function misc() { const y = $('#year'); if (y) y.textContent = new Date().getFullYear(); }
 
-  function init() { misc(); reveal(); counters(); scrollspy(); progress(); menu(); typing(); }
+  function init() { misc(); reveal(); counters(); scrollspy(); progress(); menu(); typing(); codeViewer(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();

@@ -377,3 +377,63 @@ b { color: var(--text); font-weight: 600; }
   [data-reveal] { opacity: 1 !important; transform: none !important; }
   .caret { animation: none; }
 }
+
+/* ============================================================
+   PROJECT CODE BUTTON / NOTE
+   ============================================================ */
+.project__code {
+  margin-top: 1.2rem; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem .9rem; border-radius: 8px; cursor: pointer;
+  font-family: var(--mono); font-size: .8rem; color: var(--accent);
+  background: rgba(31,200,255,.06); border: 1px solid rgba(31,200,255,.25);
+  transition: background .25s, border-color .25s, transform .2s;
+}
+.project__code svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.project__code:hover { background: rgba(31,200,255,.14); border-color: var(--accent); transform: translateY(-1px); }
+.project__note { margin-top: 1.2rem; font-size: .74rem; color: var(--muted-2); }
+
+/* ============================================================
+   CODE VIEWER MODAL
+   ============================================================ */
+.codemodal { position: fixed; inset: 0; z-index: 1000; display: none; }
+.codemodal.open { display: block; }
+.codemodal__backdrop { position: absolute; inset: 0; background: rgba(3,4,6,.78); backdrop-filter: blur(4px); }
+.codemodal__panel {
+  position: absolute; inset: clamp(1rem, 4vh, 3rem) clamp(1rem, 5vw, 4rem);
+  display: flex; flex-direction: column; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 40px 100px -30px rgba(0,0,0,.9); animation: cmIn .3s var(--ease);
+}
+@keyframes cmIn { from { opacity: 0; transform: translateY(12px) scale(.99); } }
+.codemodal__bar { display: flex; align-items: center; gap: .6rem; padding: .8rem 1.1rem; background: var(--panel-2); border-bottom: 1px solid var(--line); }
+.codemodal__dots { display: flex; gap: .45rem; }
+.codemodal__dots span { width: 11px; height: 11px; border-radius: 50%; background: #2c2f38; }
+.codemodal__dots span:nth-child(1) { background: #ff5f57; }
+.codemodal__dots span:nth-child(2) { background: #febc2e; }
+.codemodal__dots span:nth-child(3) { background: #28c840; }
+.codemodal__title { margin-left: .5rem; font-size: .82rem; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.codemodal__x { background: none; border: none; color: var(--muted); font-size: 1.05rem; cursor: pointer; padding: .2rem .55rem; border-radius: 6px; line-height: 1; }
+.codemodal__x:hover { color: var(--text); background: var(--line); }
+.codemodal__body { flex: 1; display: grid; grid-template-columns: 230px 1fr; min-height: 0; }
+.codemodal__files { border-right: 1px solid var(--line); overflow-y: auto; padding: .8rem; display: flex; flex-direction: column; gap: .2rem; background: var(--bg-2); }
+.codemodal__file {
+  text-align: left; background: none; border: none; cursor: pointer;
+  padding: .5rem .7rem; border-radius: 7px; color: var(--muted); font-family: var(--mono); font-size: .78rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background .2s, color .2s;
+}
+.codemodal__file:hover { color: var(--text); background: var(--panel); }
+.codemodal__file.active { color: var(--accent); background: var(--panel-2); }
+.codemodal__main { display: flex; flex-direction: column; min-width: 0; }
+.codemodal__filebar { display: flex; align-items: center; justify-content: space-between; padding: .6rem 1rem; border-bottom: 1px solid var(--line); background: var(--panel); }
+.codemodal__filebar > span { font-size: .76rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.codemodal__copy { background: none; border: 1px solid var(--line); color: var(--muted); cursor: pointer; padding: .3rem .75rem; border-radius: 6px; font-size: .74rem; transition: color .2s, border-color .2s; flex: 0 0 auto; }
+.codemodal__copy:hover { color: var(--accent); border-color: var(--accent); }
+.codemodal__pre { flex: 1; overflow: auto; margin: 0; background: var(--bg); }
+.codemodal__pre code { display: block; padding: 1.2rem 1.3rem; font-family: var(--mono); font-size: .82rem; line-height: 1.7; background: transparent !important; }
+
+@media (max-width: 640px) {
+  .codemodal__panel { inset: .6rem; }
+  .codemodal__body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .codemodal__files { flex-direction: row; border-right: none; border-bottom: 1px solid var(--line); overflow-x: auto; overflow-y: hidden; }
+}
