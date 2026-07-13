@@ -12,8 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0d10'/><text x='50' y='50' dy='.35em' text-anchor='middle' font-size='54' font-family='monospace' font-weight='bold' fill='%231fc8ff'>N</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0d10'/><text x='50' y='50' dy='.35em' text-anchor='middle' font-size='54' font-family='monospace' font-weight='bold' fill='%23ff3b3b'>N</text></svg>" />
 </head>
 <body>
 
@@ -110,9 +111,10 @@
           from first principles.
         </h1>
         <p class="hero__lead" data-reveal>
-          Second-year AI engineering student fusing applied mathematics with deep
-          learning, large language models and optimization. Ranked 3rd nationally
-          in Math Morocco 2024.
+          In <b class="hi">2026–2027 I will be a student at Aalto University —
+          School of Science</b> (AI &amp; Mathematics), fusing applied mathematics
+          with deep learning, large language models and optimization. Ranked 3rd
+          nationally in Math Morocco 2024.
         </p>
         <div class="hero__cta" data-reveal>
           <a class="btn btn--primary" href="assets/Nouemane_El_Gaou_CV.pdf" download data-hover>
@@ -182,6 +184,18 @@
 
         <article class="row" data-reveal>
           <div class="row__meta">
+            <span class="row__date mono">2024 — 2027</span>
+            <span class="row__tag">Home School</span>
+          </div>
+          <div class="row__body">
+            <h3>Engineering Degree — Artificial Intelligence</h3>
+            <p class="row__org mono">ENSIAS · Rabat, Morocco</p>
+            <p>National School of Computer Science &amp; Systems Analysis — home engineering programme, with the 2026–2027 year spent on exchange at Aalto University.</p>
+          </div>
+        </article>
+
+        <article class="row" data-reveal>
+          <div class="row__meta">
             <span class="row__date mono">Jun–Aug 2025</span>
             <span class="row__tag">Research</span>
           </div>
@@ -224,7 +238,7 @@
         <span class="panel__idx mono">// 03</span>
         <h2 class="panel__title">Projects</h2>
         <span class="panel__rule"></span>
-        <span class="panel__count mono">8</span>
+        <span class="panel__count mono">7</span>
       </div>
 
       <div class="projects">
@@ -235,6 +249,7 @@
             <span class="project__badge">🏆 3rd · Hackathon</span>
           </div>
           <span class="project__type mono">// LLM Agent · Full-stack</span>
+          <div class="project__math" data-reveal>$\text{match} = \arg\max_{j}\ \cos(q,\, d_j)$</div>
           <p class="project__desc">
             AI-powered lost &amp; found platform built at the RamadanIA Hackathon to
             digitalize and automate lost-item reporting and recovery. Conversational
@@ -253,6 +268,7 @@
             <span class="project__badge">MLOps</span>
           </div>
           <span class="project__type mono">// MLOps · Research</span>
+          <div class="project__math" data-reveal>$X = D + \omega \;\longrightarrow\; \text{Neighbor-Joining}$</div>
           <p class="project__desc">
             Turns viral RNA/DNA sequences into an optimized phylogenetic tree by
             learning a <b>tropical</b> correction of the distance matrix, then
@@ -273,6 +289,7 @@
             <span class="project__badge">DL</span>
           </div>
           <span class="project__type mono">// Graph Neural Nets</span>
+          <div class="project__math" data-reveal>$\mathcal{L} = \alpha\,\text{CE} + (1-\alpha)\,\tau^2\,\text{KL}$</div>
           <p class="project__desc">
             GNNs (<b>ECC</b> &amp; <b>MoNet</b>) classifying 3D point clouds
             (CAP3D / ShapeNet), with Federated Learning (FedAvg IID / non-IID, VFL)
@@ -292,6 +309,7 @@
             <span class="project__badge">PFE</span>
           </div>
           <span class="project__type mono">// Optimization</span>
+          <div class="project__math" data-reveal>$\min \sum_k y_k \quad \text{s.t.}\ \sum_i v_i x_{ik} \le V y_k$</div>
           <p class="project__desc">
             Container / truck-loading optimizer for the 3D Bin Packing Problem —
             simplex, heuristics, metaheuristics and a reinforcement-learning approach
@@ -311,6 +329,7 @@
             <span class="project__badge">Algo</span>
           </div>
           <span class="project__type mono">// Probabilistic Models</span>
+          <div class="project__math" data-reveal>$\alpha_t(j) = \big(\textstyle\sum_i \alpha_{t-1}(i)\,A_{ij}\big)\,b_j(o_t)$</div>
           <p class="project__desc">
             Markov-chain &amp; Hidden Markov Model methods for sequence and text
             analysis — transition estimation, decoding and scoring, documented in
@@ -330,6 +349,7 @@
             <span class="project__badge">C++</span>
           </div>
           <span class="project__type mono">// Systems · DP</span>
+          <div class="project__math" data-reveal>$V^*(s) = \max_a \sum_{s'} P(s'|s,a)\,[\,r + \gamma V^*(s')\,]$</div>
           <p class="project__desc">
             A linked-cell grid world built from scratch in <b>C++</b> — the data
             structure backbone for a value-iteration MDP solver and sequential
@@ -345,29 +365,11 @@
 
         <article class="project" data-reveal>
           <div class="project__head">
-            <h3 class="project__name">Zoo Explorer</h3>
-            <span class="project__badge">Web App</span>
-          </div>
-          <span class="project__type mono">// Next.js · React · TypeScript</span>
-          <p class="project__desc">
-            An interactive animal directory built with <b>Next.js</b> and React —
-            live search, multi-facet filtering (type, colour, habitat), favourites
-            and a responsive UI with shadcn/ui components.
-          </p>
-          <ul class="project__stack">
-            <li class="mono">next.js</li><li class="mono">react</li><li class="mono">typescript</li><li class="mono">shadcn/ui</li>
-          </ul>
-          <button class="project__code" data-code="zoo" data-hover>
-            <svg viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4"/></svg> View code
-          </button>
-        </article>
-
-        <article class="project" data-reveal>
-          <div class="project__head">
             <h3 class="project__name">3D Game · Blender</h3>
             <span class="project__badge">Creative</span>
           </div>
           <span class="project__type mono">// 3D · Game Dev</span>
+          <div class="project__math" data-reveal>$p' = R\,p + t, \quad R \in SO(3)$</div>
           <p class="project__desc">
             A self-built 3D video game — modelling, rigging, assets and game logic —
             exploring the creative side of computation.
@@ -505,29 +507,37 @@
 
   </main>
 
-  <!-- ░░ CODE VIEWER MODAL ░░ -->
+  <!-- ░░ CODE / REPO VIEWER MODAL ░░ -->
   <div class="codemodal" id="codeModal" aria-hidden="true">
     <div class="codemodal__backdrop" data-close></div>
-    <div class="codemodal__panel" role="dialog" aria-modal="true" aria-label="Source code">
+    <div class="codemodal__panel" role="dialog" aria-modal="true" aria-label="Repository">
       <header class="codemodal__bar">
-        <div class="codemodal__dots"><span></span><span></span><span></span></div>
-        <span class="codemodal__title mono" id="cmTitle">project</span>
+        <span class="codemodal__repo">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75H4.5A2.5 2.5 0 0 1 2 11.5Zm10.5 10.5V2H4.5a1 1 0 0 0-1 1v7.55c.3-.1.65-.05 1-.05Z"/></svg>
+          <b class="mono" id="cmTitle">repo</b>
+        </span>
+        <span class="codemodal__public mono">Public</span>
+        <span class="codemodal__lang mono" id="cmLang"></span>
         <button class="codemodal__x" id="cmClose" data-close aria-label="Close">✕</button>
       </header>
+      <p class="codemodal__desc" id="cmDesc"></p>
       <div class="codemodal__body">
         <aside class="codemodal__files mono" id="cmFiles"></aside>
         <div class="codemodal__main">
           <div class="codemodal__filebar">
-            <span class="mono" id="cmFilename">file</span>
+            <span class="mono" id="cmFilename">README.md</span>
             <button class="codemodal__copy mono" id="cmCopy">Copy</button>
           </div>
-          <pre class="codemodal__pre"><code id="cmCode" class="hljs"></code></pre>
+          <div class="codemodal__view" id="cmView"></div>
         </div>
       </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

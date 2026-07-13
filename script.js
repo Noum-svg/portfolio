@@ -93,44 +93,101 @@
     setTimeout(tick, 900);
   }
 
-  /* ---------- code viewer ---------- */
+  /* ---------- KaTeX math ---------- */
+  const MATH_OPTS = {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$', right: '$', display: false }
+    ],
+    throwOnError: false
+  };
+  function renderMath(el) {
+    if (window.renderMathInElement && el) {
+      try { window.renderMathInElement(el, MATH_OPTS); } catch (e) {}
+    }
+  }
+  function mathInit() {
+    if (!window.renderMathInElement) { setTimeout(mathInit, 120); return; }
+    $$('.project__math').forEach(renderMath);
+  }
+
+  /* ---------- repo / code viewer (GitHub-style) ---------- */
   function codeViewer() {
     const modal = $('#codeModal');
     if (!modal) return;
-    const filesEl = $('#cmFiles'), codeEl = $('#cmCode'), titleEl = $('#cmTitle'),
-          nameEl = $('#cmFilename'), copyBtn = $('#cmCopy');
+    const filesEl = $('#cmFiles'), viewEl = $('#cmView'), titleEl = $('#cmTitle'),
+          descEl = $('#cmDesc'), langEl = $('#cmLang'), nameEl = $('#cmFilename'), copyBtn = $('#cmCopy');
     let manifest = null, current = null;
 
-    const highlight = (text, lang) => {
-      codeEl.textContent = text;
-      codeEl.className = 'hljs language-' + (lang || 'plaintext');
-      if (window.hljs) { try { window.hljs.highlightElement(codeEl); } catch (e) {} }
-    };
+    const setActive = (name) =>
+      $$('.codemodal__file').forEach((b) => b.classList.toggle('active', b.dataset.file === name));
 
-    const loadFile = (slug, file) => {
-      $$('.codemodal__file').forEach((b) => b.classList.toggle('active', b.dataset.file === file.name));
+    const showCode = (slug, file) => {
+      setActive(file.name);
       nameEl.textContent = 'code/' + slug + '/' + file.name;
-      codeEl.textContent = 'Loading…';
+      viewEl.innerHTML = '';
+      const pre = document.createElement('pre');
+      const code = document.createElement('code');
+      code.className = 'hljs language-' + (file.lang || 'plaintext');
+      code.textContent = 'Loading…';
+      pre.appendChild(code); viewEl.appendChild(pre);
       fetch('code/' + slug + '/' + encodeURIComponent(file.name))
         .then((r) => r.text())
-        .then((t) => { current = t; highlight(t, file.lang); codeEl.parentElement.scrollTop = 0; })
-        .catch(() => { codeEl.textContent = '// could not load file'; });
+        .then((t) => { current = t; code.textContent = t; if (window.hljs) { try { window.hljs.highlightElement(code); } catch (e) {} } viewEl.scrollTop = 0; })
+        .catch(() => { code.textContent = '// could not load file'; });
+    };
+
+    const showReadme = (slug, readme) => {
+      setActive(readme);
+      nameEl.textContent = readme;
+      viewEl.innerHTML = '<div class="markdown-body">Loading…</div>';
+      fetch('code/' + slug + '/' + encodeURIComponent(readme))
+        .then((r) => r.text())
+        .then((md) => {
+          current = md;
+          let html = md;
+          if (window.marked) {
+            // Protect $$…$$ and $…$ from markdown parsing (e.g. * in V^*), restore after.
+            const math = [];
+            const stash = (m) => { math.push(m); return '@@MATH' + (math.length - 1) + '@@'; };
+            const tokenized = md
+              .replace(/\$\$([\s\S]+?)\$\$/g, stash)
+              .replace(/\$([^$\n]+?)\$/g, stash);
+            html = window.marked.parse(tokenized)
+              .replace(/@@MATH(\d+)@@/g, (_, i) => math[+i]);
+          }
+          viewEl.innerHTML = '<div class="markdown-body">' + html + '</div>';
+          renderMath(viewEl.firstChild);
+          viewEl.scrollTop = 0;
+        })
+        .catch(() => { viewEl.innerHTML = '<div class="markdown-body">// could not load README</div>'; });
     };
 
     const open = (slug) => {
       const proj = manifest[slug];
       if (!proj) return;
-      titleEl.textContent = proj.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + ' — source';
+      titleEl.textContent = 'nouemane / ' + proj.name;
+      descEl.textContent = proj.desc || '';
+      langEl.textContent = proj.lang || '';
       filesEl.innerHTML = '';
+
+      if (proj.readme) {
+        const b = document.createElement('button');
+        b.className = 'codemodal__file is-readme'; b.textContent = proj.readme; b.dataset.file = proj.readme;
+        b.addEventListener('click', () => showReadme(slug, proj.readme));
+        filesEl.appendChild(b);
+      }
       proj.files.forEach((f) => {
         const b = document.createElement('button');
         b.className = 'codemodal__file'; b.textContent = f.name; b.dataset.file = f.name;
-        b.addEventListener('click', () => loadFile(slug, f));
+        b.addEventListener('click', () => showCode(slug, f));
         filesEl.appendChild(b);
       });
+
       modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      loadFile(slug, proj.files[0]);
+      if (proj.readme) showReadme(slug, proj.readme);
+      else showCode(slug, proj.files[0]);
     };
 
     const close = () => {
@@ -138,19 +195,18 @@
       document.body.style.overflow = '';
     };
 
-    const wire = () => {
-      $$('.project__code').forEach((btn) => {
-        const slug = btn.dataset.code;
-        btn.addEventListener('click', () => { if (manifest) open(slug); });
-      });
-    };
-
     fetch('code/manifest.json').then((r) => r.json())
-      .then((m) => { manifest = m; wire(); })
+      .then((m) => {
+        manifest = m;
+        $$('.project__code').forEach((btn) => {
+          const slug = btn.dataset.code;
+          btn.addEventListener('click', () => { if (manifest && manifest[slug]) open(slug); });
+        });
+      })
       .catch(() => {});
 
     modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) close(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
     copyBtn.addEventListener('click', () => {
       if (current == null) return;
       navigator.clipboard.writeText(current).then(() => {
@@ -163,7 +219,7 @@
   /* ---------- misc ---------- */
   function misc() { const y = $('#year'); if (y) y.textContent = new Date().getFullYear(); }
 
-  function init() { misc(); reveal(); counters(); scrollspy(); progress(); menu(); typing(); codeViewer(); }
+  function init() { misc(); reveal(); counters(); scrollspy(); progress(); menu(); typing(); mathInit(); codeViewer(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
